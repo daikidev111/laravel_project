@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
-{{$var}}
+{{--
+@foreach ($items as $item)
+{{$item->id}}
+@endforeach
+--}}
 </div>
 @endsection
