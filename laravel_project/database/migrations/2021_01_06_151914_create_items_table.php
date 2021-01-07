@@ -15,10 +15,10 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('name')->nullable();
-			$table->string('description')->nullable();
-			$table->integer('price')->nullable();
-			$table->integer('stock')->nullable();
+			$table->string('name');
+			$table->string('description');
+			$table->integer('price');
+			$table->integer('stock');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -35,4 +35,3 @@ class CreateItemsTable extends Migration
 	}
 }
 
-?>
