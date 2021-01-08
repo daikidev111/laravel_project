@@ -5,20 +5,21 @@
 <table border="1" style="table-layout: fixed; width: 100%">
 <tr>
 <th>商品名</th>
+<th>内容</th>
 <th>値段</th>
 <th>在庫有無</th>
 </tr>
-@foreach ($items as $item)
 <tr>
-<td><a href="{{route('item.show', $item->id)}}">{{ $item->name }}</a></td>
+<td>{{ $item->name }}</td>
 <td>{{ $item->description }}</td>
+<td>{{ $item->price }}</td>
 @if ($item->stock > 0)
 <td>有</td>
 @else
 <td>無</td>
 @endif
 </tr>
-@endforeach
 </table>
+<a href="{{ route('item.index') }}">商品一覧へ</a>
 </div>
 @endsection

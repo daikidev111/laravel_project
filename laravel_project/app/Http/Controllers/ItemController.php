@@ -11,4 +11,9 @@ class ItemController extends Controller
 		$items = Item::all();
 		return view('item.index', compact('items'));
 	}
+
+	public function show($id) {
+		$item = Item::find($id);
+		return view('item.detail', compact('item'));
+	}
 }
