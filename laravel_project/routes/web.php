@@ -19,9 +19,9 @@ Auth::routes();
 
 /*
 User認証外
-*/
-Route::get('/', function () { return redirect('/home'); });
-
+ */
+Route::get('/item', 'ItemController@index')->name('item.index');
+Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
 /*
 User認証時
 */

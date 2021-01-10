@@ -15,8 +15,9 @@
                     @endif
 
                     You are logged in!
-                </div>
-            </div>
+				</div>
+			</div>
+			<a href="{{ Route('item.index') }}">アイテム一覧へ戻る</a>
         </div>
     </div>
 </div>
