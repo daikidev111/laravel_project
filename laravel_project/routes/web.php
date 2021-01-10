@@ -12,19 +12,37 @@
 */
 use App\Item;
 
+/*
+auth認証時
+*/
+Auth::routes();
 
+/*
+User認証外
+*/
+Route::get('/', function () { return redirect('/home'); });
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+User認証時
+*/
+Route::group(['middleware' => 'auth:user'], function() {
+	Route::get('/home', 'HomeController@index')->name('home');
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/*
+Admin認証不要時
+*/
+Route::group(['prefix' => 'admin'], function() {
+	Route::get('/', function () { return redirect('/admin/home'); });
+	Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+	Route::post('login', 'Admin\LoginController@login');
+});
 
-Auth::routes();
+/*
+Admin認証後
+ */
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+	Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+	Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', 'ItemController@index')->name('item.index');
-
-Route::get('/{id}', 'ItemController@show')->name('item.show');

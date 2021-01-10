@@ -10,10 +10,10 @@
 <th>在庫有無</th>
 </tr>
 <tr>
-<td>{{ $item->name }}</td>
-<td>{{ $item->description }}</td>
-<td>{{ $item->price }}</td>
-@if ($item->stock > 0)
+<td>{{ $item['name'] }}</td>
+<td>{{ $item['description'] }}</td>
+<td>{{ $item['price'] }}</td>
+@if ($item['stock'] > 0)
 <td>有</td>
 @else
 <td>無</td>
