@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Item;
-use App\Repositories\ItemRepository;
-
+use App\Repositories\EloquentItem;
 class ItemController extends Controller
 {
 	private $item;
 
-	public function __construct(ItemRepository $item)
+	public function __construct(EloquentItem $item)
 	{
 		$this->item = $item;
 	}
@@ -20,8 +18,10 @@ class ItemController extends Controller
 		return view('item.index', compact('items'));
 	}
 
-	public function show($id) {
+	public function show($id)
+	{
 		$item = $this->item->getItem($id);
 		return view('item.detail', compact('item'));
 	}
+
 }

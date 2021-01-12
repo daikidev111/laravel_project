@@ -11,7 +11,6 @@
 |
 */
 use App\Item;
-
 /*
 auth認証時
 */
@@ -37,8 +36,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/', function () { return redirect('/admin/home'); });
 	Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
 	Route::post('login', 'Admin\LoginController@login');
-	Route::get('item/detail/{id}', 'Admin\ItemController@show')->name('admin.item.show');
-	Route::get('/item', 'Admin\ItemController@index')->name('admin.item.index');
+	//Route::get('item/detail/{id}', 'Admin\ItemController@show')->name('admin.item.show');
+	//Route::get('/item', 'Admin\ItemController@index')->name('admin.item.index');
 });
 
 /*
@@ -47,5 +46,23 @@ Admin認証後
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
 	Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
+	//デフォルトのURIを変えないといけないためここでSHOWの定義
+	Route::get('item/detail/{id}', 'Admin\ItemController@show')->name('admin.item.detail');
+	Route::resource('item', 'Admin\ItemController', [
+		'except' => [
+			'show'
+		],
+		'names' => [
+			'create' => 'admin.item.create',
+			'index' => 'admin.item.index',
+			'store' => 'admin.item.store',
+			'destroy' => 'admin.item.destory',
+			'edit' => 'admin.item.edit',
+			'update' => 'admin.item.update'
+		],
+		'parameters' => [
+			'item' => 'id'
+		]
+	]);
 });
 
