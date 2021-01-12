@@ -25,7 +25,7 @@ class EloquentItem implements ItemRepository
 
 	public function store(array $data)
 	{
-		return "a";
+		return $this->item->create($data);
 	}
 
 	public function update($id, array $data)

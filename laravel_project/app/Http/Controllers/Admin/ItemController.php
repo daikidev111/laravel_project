@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\EloquentItem;
+use App\Repositories\ItemRepository;
 class ItemController extends Controller
 {
 	private $item;
 
-	public function __construct(EloquentItem $item)
+	public function __construct(ItemRepository $item)
 	{
 		$this->item = $item;
 	}
@@ -44,7 +44,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.item.create');
     }
 
     /**
@@ -54,8 +54,10 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+	{
+		$this->item->store($request->all());
+
+		return redirect()->route('admin.item.index')->with('success', '新規商品の追加に成功しました');
     }
 
     /**
