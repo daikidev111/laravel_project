@@ -20,7 +20,7 @@ class EloquentItem implements ItemRepository
 
 	public function getItem($id)
 	{
-		return $this->item->find($id);
+		return $this->item->findOrFail($id);
 	}
 
 	public function store(array $data)

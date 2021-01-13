@@ -17,9 +17,9 @@
 <td class="mdl-data-table__cell--non-numeric">{{ $item_arr->description }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $item_arr->price }}</td>
 @if ($item_arr->stock > 0)
-<td class="mdl-data-table__cell--non-numeric">有</td>
+<td class="mdl-data-table__cell--non-numeric">在庫有り</td>
 @else
-<td class="mdl-data-table__cell--non-numeric">無</td>
+<td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
 </tr>
 </tbody>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ItemRepository;
-class ItemController extends Controller
+final class ItemController extends Controller
 {
 	private $item;
 

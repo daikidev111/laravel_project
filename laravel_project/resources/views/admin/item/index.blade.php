@@ -23,9 +23,9 @@
 <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.detail', $item->id) }}">{{ $item->name }}</a></td>
 <td class="mdl-data-table__cell--non-numeric">{{ $item->price }}</td>
 @if ($item->stock > 0)
-<td class="mdl-data-table__cell--non-numeric">有</td>
+<td class="mdl-data-table__cell--non-numeric">在庫有り</td>
 @else
-<td class="mdl-data-table__cell--non-numeric">無</td>
+<td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
 </tr>
 @endforeach
