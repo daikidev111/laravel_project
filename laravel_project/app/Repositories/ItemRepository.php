@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 interface ItemRepository
 {
-	public function selectAll();
+	public function paginate($num);
 	public function getItem($id);
 	public function store(array $data);
 	public function update($id, array $data);

@@ -8,6 +8,7 @@ use App\Repositories\ItemRepository;
 final class ItemController extends Controller
 {
 	private $item;
+	const NUMBER_OF_ITEMS = 5;
 
 	public function __construct(ItemRepository $item)
 	{
@@ -33,7 +34,8 @@ final class ItemController extends Controller
      */
     public function index()
 	{
-		$item_arr = $this->item->selectAll();
+		$item_arr = $this->item->paginate(self::NUMBER_OF_ITEMS);
+
 		return view('admin.item.index', compact('item_arr'));
     }
 
@@ -68,7 +70,9 @@ final class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+		$item_arr = $this->item->getItem($id);
+		return view('admin.item.edit', compact('item_arr'));
+
     }
 
     /**
@@ -79,8 +83,9 @@ final class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+	{
+		$this->item->update($id, $request->all());
+		return redirect()->route('admin.item.index')->with('success', '既存商品の編集に成功しました');
     }
 
     /**
@@ -90,7 +95,8 @@ final class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+	{
+
+        return redirect()->route('admin.item.index')->with('success', '既存商品の削除に成功しました');
     }
 }

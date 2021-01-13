@@ -10,6 +10,8 @@ class Item extends Model
 		'name',
 		'description',
 		'stock',
-		'price'
+		'price',
+		//'created_at',
+		//'updated_at'
     ];
 }
