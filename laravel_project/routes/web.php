@@ -22,6 +22,9 @@ User認証外
  */
 Route::get('/item', 'ItemController@index')->name('item.index');
 Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
+Route::get('/', function () {
+	    return view('welcome');
+});
 /*
 User認証時
 */

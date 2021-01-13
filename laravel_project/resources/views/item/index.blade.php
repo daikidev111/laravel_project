@@ -13,9 +13,9 @@
 <td><a href="{{route('item.show', $item->id)}}">{{ $item->name }}</a></td>
 <td>{{ $item->description }}</td>
 @if ($item->stock > 0)
-<td>有</td>
+<td>在庫有り</td>
 @else
-<td>無</td>
+<td>在庫無し</td>
 @endif
 </tr>
 @endforeach
