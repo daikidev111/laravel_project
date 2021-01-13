@@ -13,7 +13,7 @@ class ItemController extends Controller
 	}
 
 	public function show($id) {
-		$item = Item::find($id);
+		$item = Item::findOrFail($id);
 		return view('item.detail', compact('item'));
 	}
 }
