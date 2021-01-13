@@ -56,7 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 			'create' => 'admin.item.create',
 			'index' => 'admin.item.index',
 			'store' => 'admin.item.store',
-			'destroy' => 'admin.item.destory',
+			'destroy' => 'admin.item.destroy',
 			'edit' => 'admin.item.edit',
 			'update' => 'admin.item.update'
 		],

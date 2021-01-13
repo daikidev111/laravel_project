@@ -15,7 +15,8 @@
 <th class="mdl-data-table__cell--non-numeric">商品名</th>
 <th class="mdl-data-table__cell--non-numeric">値段</th>
 <th class="mdl-data-table__cell--non-numeric">在庫有無</th>
-<th class="mdl-data-table__cell--non-numeric">アクション</th>
+<th class="mdl-data-table__cell--non-numeric">編集</th>
+<th class="mdl-data-table__cell--non-numeric">削除</th>
 </thead>
 </tr>
 <tbody>
@@ -28,11 +29,13 @@
 @else
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
-<td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.edit', $item->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">編集</a>
-<form action="{{ route('admin.item.destroy') }}" method="POST">
+<td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.edit', $item->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">編集</a></td>
+<td class="mdl-data-table__cell--non-numeric">
+<form action="{{ route('admin.item.destroy', $item->id) }}" method="POST">
 {{ method_field('DELETE') }}
 {{ csrf_field() }}
-
+<input type="submit" value="削除" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+</form>
 </td>
 </tr>
 @endforeach

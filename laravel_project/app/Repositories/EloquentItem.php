@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Item;
-use SoftDeletes;
 use App\Repositories\ItemRepository;
 
 class EloquentItem implements ItemRepository
@@ -20,6 +19,10 @@ class EloquentItem implements ItemRepository
 		return $this->item->latest()->paginate($num);
 	}
 
+	public function selectAll() {
+		return $this->item->all();
+	}
+
 	public function getItem($id)
 	{
 		return $this->item->findOrFail($id);
@@ -31,7 +34,8 @@ class EloquentItem implements ItemRepository
 			'name' => $data['name'],
 			'description' => $data['description'],
 			'price' => $data['price'],
-			'stock' => $data['stock']
+			'stock' => $data['stock'],
+			'updated_at' => null
 		]);
 	}
 

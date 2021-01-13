@@ -33,7 +33,6 @@
 <label class="mdl-textfield__label">在庫数を入力してください</label>
 <span class="mdl-textfield__error">数字ではありません</span>
 </div>
-
 <br>
 <br>
 <input type="submit" value="Create" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">

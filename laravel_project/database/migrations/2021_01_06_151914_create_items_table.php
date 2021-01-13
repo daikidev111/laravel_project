@@ -19,7 +19,8 @@ class CreateItemsTable extends Migration
 			$table->string('description');
 			$table->integer('price');
 			$table->integer('stock');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+			$table->timestamp('updated_at')->nullable();
 			$table->softDeletes();
 		});
 	}
