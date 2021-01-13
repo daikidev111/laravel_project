@@ -17,7 +17,8 @@
                     You are logged in!
                 </div>
 			</div>
-        </div>
-    </div>
+<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
+		</div>
+	</div>
 </div>
 @endsection
