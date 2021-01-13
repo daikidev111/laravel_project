@@ -6,16 +6,16 @@
 <tr>
 <th>商品名</th>
 <th>値段</th>
-<th>在庫有無</th>
+<th>在庫の有無</th>
 </tr>
 @foreach ($items as $item)
 <tr>
-<td><a href="{{route('item.show', $item->id)}}">{{ $item->name }}</a></td>
-<td>{{ $item->description }}</td>
+<td><a href="{{ route('item.show', $item->id) }}">{{ $item->name }}</a></td>
+<td>{{ $item->price }}</td>
 @if ($item->stock > 0)
-<td>有</td>
+<td>在庫有り</td>
 @else
-<td>無</td>
+<td>在庫無し</td>
 @endif
 </tr>
 @endforeach

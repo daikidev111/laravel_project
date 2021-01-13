@@ -5,18 +5,18 @@
 <table border="1" style="table-layout: fixed; width: 100%">
 <tr>
 <th>商品名</th>
-<th>内容</th>
+<th>商品説明</th>
 <th>値段</th>
-<th>在庫有無</th>
+<th>在庫の有無</th>
 </tr>
 <tr>
 <td>{{ $item->name }}</td>
 <td>{{ $item->description }}</td>
 <td>{{ $item->price }}</td>
 @if ($item->stock > 0)
-<td>有</td>
+<td>在庫有り</td>
 @else
-<td>無</td>
+<td>在庫無し</td>
 @endif
 </tr>
 </table>
