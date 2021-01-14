@@ -14,7 +14,7 @@
 <tr>
 <th class="mdl-data-table__cell--non-numeric">商品名</th>
 <th class="mdl-data-table__cell--non-numeric">値段</th>
-<th class="mdl-data-table__cell--non-numeric">在庫有無</th>
+<th class="mdl-data-table__cell--non-numeric">在庫の有無</th>
 <th class="mdl-data-table__cell--non-numeric">編集</th>
 <th class="mdl-data-table__cell--non-numeric">削除</th>
 </thead>
@@ -25,7 +25,7 @@
 <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.detail', $item->id) }}">{{ $item->name }}</a></td>
 <td class="mdl-data-table__cell--non-numeric">{{ $item->price }}</td>
 @if ($item->stock > 0)
-<td class="mdl-data-table__cell--non-numeric">在庫有り</td>
+<td class="mdl-data-table__cell--non-numeric">在庫あり</td>
 @else
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
