@@ -39,14 +39,16 @@
 <input type="submit" value="Edit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
 <br>
-<div class="erros">
+<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
+<br>
 @if ($errors->any())
+<div class="erros">
 <ul>
 @foreach ($errors->all() as $error)
 <li>{{ $error }}</li>
 @endforeach
 </ul>
-@endif
 </div>
+@endif
 </div>
 @endsection

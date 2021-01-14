@@ -37,6 +37,9 @@
 <br>
 <input type="submit" value="Create" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
+<br>
+<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
+<br>
 @if ($errors->any())
 <div class ="errors">
 <ul>
