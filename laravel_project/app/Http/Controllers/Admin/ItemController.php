@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\ItemRepository;
 final class ItemController extends Controller
@@ -32,7 +33,7 @@ final class ItemController extends Controller
 		return view('admin.item.create');
 	}
 
-	public function store(Request $request)
+	public function store(StoreRequest $request)
 	{
 		$this->item->store($request->all());
 		return redirect()->route('admin.item.index')->with('success', '新規商品の追加に成功しました');
