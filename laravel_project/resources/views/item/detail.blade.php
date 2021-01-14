@@ -14,7 +14,7 @@
 <td>{{ $item->description }}</td>
 <td>{{ $item->price }}</td>
 @if ($item->stock > 0)
-<td>在庫有り</td>
+<td>在庫あり</td>
 @else
 <td>在庫無し</td>
 @endif
