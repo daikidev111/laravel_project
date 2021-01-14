@@ -38,5 +38,15 @@
 <br>
 <input type="submit" value="Edit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
+<br>
+<div class="erros">
+@if ($errors->any())
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+@endif
+</div>
 </div>
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+		return true;
     }
 
     /**
@@ -21,14 +21,14 @@ class StoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
+	public function rules()
+	{
+		return [
 			'name' => 'required|max:191',
 			'description' => 'required|max:191',
 			'price' => 'required|int|min:0',
 			'stock' => 'required|int|min:0'
-        ];
+		];
 	}
 
 	public function messages()
@@ -46,5 +46,4 @@ class StoreRequest extends FormRequest
 			'stock.min' => '在庫数は０以上にしてください'
 		];
 	}
-
 }

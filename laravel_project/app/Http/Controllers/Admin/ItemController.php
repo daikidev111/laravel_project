@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\ItemRepository;
 final class ItemController extends Controller
@@ -45,7 +46,7 @@ final class ItemController extends Controller
 		return view('admin.item.edit', compact('item_arr'));
 	}
 
-	public function update(Request $request, $id)
+	public function update(UpdateRequest $request, $id)
 	{
 		$this->item->update($id, $request->all());
 		return redirect()->route('admin.item.index')->with('success', '既存商品の編集に成功しました');
