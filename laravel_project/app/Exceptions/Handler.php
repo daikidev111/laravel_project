@@ -13,19 +13,19 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
-        //
-    ];
+	protected $dontReport = [
+		//
+	];
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
      * @var array
      */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
+	protected $dontFlash = [
+		'password',
+		'password_confirmation',
+	];
 
     /**
      * Report or log an exception.
@@ -35,10 +35,10 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Exception $exception)
-    {
-        parent::report($exception);
-    }
+	public function report(Exception $exception)
+	{
+		parent::report($exception);
+	}
 
     /**
      * Render an exception into an HTTP response.
@@ -47,12 +47,12 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
-    {
-        return parent::render($request, $exception);
+	public function render($request, Exception $exception)
+	{
+		return parent::render($request, $exception);
 	}
 
-    public function unauthenticated($request, AuthenticationException $exception)
+	public function unauthenticated($request, AuthenticationException $exception)
 	{
 		if ($request->expectsJson()) {
 			return response()->json(['message' => $exception->getMessage()], 401);
