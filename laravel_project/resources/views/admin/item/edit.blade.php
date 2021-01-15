@@ -22,21 +22,13 @@
 <br>
 
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="price" value="{{ $item_arr->price }}">
-<label class="mdl-textfield__label">値段を入力してください</label>
-<span class="mdl-textfield__error">数字ではありません</span>
-</div>
-
-<br>
-
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="stock"value="{{ $item_arr->stock }}">
+<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="stock" value="{{ $item_arr->stock }}">
 <label class="mdl-textfield__label">在庫数を入力してください</label>
 <span class="mdl-textfield__error">数字ではありません</span>
 </div>
 <br>
 <br>
-<input type="submit" value="Edit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+<input type="submit" value="編集する" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
 <br>
 <a href="{{ route('admin.item.index') }}">商品一覧へ</a>

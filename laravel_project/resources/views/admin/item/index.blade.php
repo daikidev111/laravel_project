@@ -6,7 +6,11 @@
 <strong>{{ session('success') }}</strong>
 @endif
 <br>
-<a href="{{ route('admin.item.create') }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Create</a>
+@if (session('error'))
+<strong>{{ session('error') }}</strong>
+@endif
+<br>
+<a href="{{ route('admin.item.create') }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">作成</a>
 <br>
 <br>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: fixed; width: 100%">

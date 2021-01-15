@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use App\Item;
 use App\Repositories\ItemRepository;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\routing\Redirector;
 
 class EloquentItem implements ItemRepository
 {
 	private $item;
-
 
 	public function __construct(Item $item)
 	{
@@ -48,4 +49,5 @@ class EloquentItem implements ItemRepository
 	{
 		return $this->item->findOrfail($id)->delete();
 	}
+
 }
