@@ -52,9 +52,4 @@ final class ItemController extends Controller
 		return redirect()->route('admin.item.index')->with('success', '既存商品の編集に成功しました');
 	}
 
-	public function destroy($id)
-	{
-		$this->item->delete($id);
-		return redirect()->route('admin.item.index')->with('success', '既存商品の削除に成功しました');
-	}
 }

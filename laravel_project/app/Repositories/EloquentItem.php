@@ -44,10 +44,4 @@ class EloquentItem implements ItemRepository
 	{
 		return $this->item->findOrFail($id)->update($data);
 	}
-
-	public function delete($id)
-	{
-		return $this->item->findOrfail($id)->delete();
-	}
-
 }

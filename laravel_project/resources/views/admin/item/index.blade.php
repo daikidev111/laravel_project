@@ -6,10 +6,6 @@
 <strong>{{ session('success') }}</strong>
 @endif
 <br>
-@if (session('error'))
-<strong>{{ session('error') }}</strong>
-@endif
-<br>
 <a href="{{ route('admin.item.create') }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">作成</a>
 <br>
 <br>
@@ -20,7 +16,6 @@
 <th class="mdl-data-table__cell--non-numeric">値段</th>
 <th class="mdl-data-table__cell--non-numeric">在庫の有無</th>
 <th class="mdl-data-table__cell--non-numeric">編集</th>
-<th class="mdl-data-table__cell--non-numeric">削除</th>
 </thead>
 </tr>
 <tbody>
@@ -34,13 +29,6 @@
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
 <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.edit', $item->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">編集</a></td>
-<td class="mdl-data-table__cell--non-numeric">
-<form action="{{ route('admin.item.destroy', $item->id) }}" method="POST">
-{{ method_field('DELETE') }}
-{{ csrf_field() }}
-<input type="submit" value="削除" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-</form>
-</td>
 </tr>
 @endforeach
 </tbody>

@@ -50,13 +50,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::get('item/detail/{id}', 'Admin\ItemController@show')->name('admin.item.detail');
 	Route::resource('item', 'Admin\ItemController', [
 		'except' => [
-			'show'
+			'show',
+			'destroy'
 		],
 		'names' => [
 			'create' => 'admin.item.create',
 			'index' => 'admin.item.index',
 			'store' => 'admin.item.store',
-			'destroy' => 'admin.item.destroy',
 			'edit' => 'admin.item.edit',
 			'update' => 'admin.item.update'
 		],
