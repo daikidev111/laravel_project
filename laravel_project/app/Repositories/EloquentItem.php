@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Item;
 use App\Repositories\ItemRepository;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\routing\Redirector;
 
 class EloquentItem implements ItemRepository
 {

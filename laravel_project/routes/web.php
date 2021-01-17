@@ -11,6 +11,8 @@
 |
 */
 use App\Item;
+use App\Cart;
+use Illuminate\Database\Eloquent\Model;
 /*
 auth認証時
 */
@@ -22,11 +24,30 @@ User認証外
 Route::get('/item', 'ItemController@index')->name('item.index');
 Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
 Route::get('/', function() { return view('welcome'); })->name('welcome');
+
+
+
+/*
+For testing
+*/
+
+//to get item name using inverse relation
+Route::get('/item/test', function() {
+	return Cart::find(1)->item->name;
+});
+
+
+
+
+
 /*
 User認証時
 */
 Route::group(['middleware' => 'auth:user'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/cart', 'CartController@index')->name('cart.index');
+	Route::DELETE('/cart/{item_id}', 'CartController@delete')->name('cart.delete');
+	Route::post('/cart', 'CartController@add')->name('cart.add');
 });
 
 /*
