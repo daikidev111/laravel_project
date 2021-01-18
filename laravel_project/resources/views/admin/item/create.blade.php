@@ -41,7 +41,7 @@
 <a href="{{ route('admin.item.index') }}">商品一覧へ</a>
 <br>
 @if ($errors->any())
-<div class ="errors">
+<div class="errors">
 <ul>
 @foreach ($errors->all() as $error)
 <li>{{ $error }}</li>
