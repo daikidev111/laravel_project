@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
 		return [
 			'name' => 'required|max:191',
 			'description' => 'required|max:191',
-			'stock' => 'required|integer|min:0'
+			'stock' => 'required|integer|min:0|max:99999'
 		];
 	}
 
@@ -40,6 +40,7 @@ class UpdateRequest extends FormRequest
 			'stock.required' => '在庫は必須です',
 			'stock.integer' => '在庫数は整数です',
 			'stock.min' => '在庫数は０以上にしてください',
+			'stock.max' => '在庫数は最大値を超えています'
 		];
 	}
 }

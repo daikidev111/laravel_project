@@ -26,20 +26,6 @@ Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
 Route::get('/', function() { return view('welcome'); })->name('welcome');
 
 
-
-/*
-For testing
-*/
-
-//to get item name using inverse relation
-Route::get('/item/test', function() {
-	return Cart::find(1)->item->name;
-});
-
-
-
-
-
 /*
 User認証時
 */

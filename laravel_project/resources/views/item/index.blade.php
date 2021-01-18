@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container">
+@if ($errors->any())
+<div class="errors">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border="1" style="table-layout: fixed; width: 100%">
 <thead>
 <tr>
@@ -15,7 +24,7 @@
 @foreach ($items as $item)
 <tr>
 <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('item.show', $item->id) }}">{{ $item->name }}</a></td>
-<td class="mdl-data-table__cell--non-numeric">{{ $item->description }}</td>
+<td class="mdl-data-table__cell--non-numeric">{{ $item->price }}円</td>
 @if ($item->stock > 0)
 <td class="mdl-data-table__cell--non-numeric">在庫あり</td>
 @auth('user')

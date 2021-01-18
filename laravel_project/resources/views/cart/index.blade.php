@@ -39,5 +39,8 @@
 @else
 <h1>カートが空です。</h1>
 @endif
+<br>
+<br>
+<a href="{{ route('item.index') }}">商品一覧へ</a>
 </div>
 @endsection

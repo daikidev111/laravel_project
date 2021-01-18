@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Repositories\CartRepository;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\AddRequest;
 final class CartController extends Controller
 {
 	private $cart;
@@ -24,14 +25,16 @@ final class CartController extends Controller
 
 	public function delete($item_id)
 	{
-		dd($this->cart->getCart(intval($item_id)));
-		$this->cart->delete($item_id);
-		return redirect()->route('cart.index')->with('success', 'カート内の商品の削除に成功しました');
+		if ($this->cart->delete(intval($item_id))) {
+			return redirect()->route('cart.index')->with('success', 'カート内の商品の削除に成功しました');
+		}
+		return redirect()->route('cart.index')->with('success', 'カート内の商品を削除する際にエラーが起きました。もう一度お試しください');
 	}
 
 	public function add(Request $request) {
-		//TODO: true or false で返す
-		$this->cart->add($request->all());
-		return redirect()->route('cart.index')->with('success', '商品をカートに追加しました');
+		if ($this->cart->add($request->all())) {
+			return redirect()->route('cart.index')->with('success', '商品をカートに追加しました');
+		}
+		return redirect()->route('cart.index')->with('success', '商品をカートに追加する際にエラーが起きました。もう一度お試しください');
 	}
 }

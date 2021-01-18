@@ -26,8 +26,8 @@ class StoreRequest extends FormRequest
         return [
 			'name' => 'required|max:191',
 			'description' => 'required|max:191',
-			'price' => 'required|integer|min:0',
-			'stock' => 'required|integer|min:0'
+			'price' => 'required|integer|min:0|max:999999',
+			'stock' => 'required|integer|min:0|max:99999'
         ];
 	}
 
@@ -41,9 +41,11 @@ class StoreRequest extends FormRequest
 			'price.required' => '値段は必須です',
 			'price.integer' => '値段は整数です',
 			'price.min' => '値段は０以上にしてください',
+			'price.max' => '値段は最大値を超えています',
 			'stock.required' => '在庫は必須です',
 			'stock.integer' => '在庫数は整数です',
-			'stock.min' => '在庫数は０以上にしてください'
+			'stock.min' => '在庫数は０以上にしてください',
+			'stock.max' => '在庫数は最大値を超えています'
 		];
 	}
 

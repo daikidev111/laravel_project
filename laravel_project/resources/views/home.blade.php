@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">ログイン状況</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -14,10 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    ログインに成功しました！
 				</div>
 			</div>
-			<a href="{{ Route('item.index') }}">アイテム一覧へ戻る</a>
+			<a href="{{ Route('item.index') }}">アイテム一覧へ</a>
         </div>
     </div>
 </div>

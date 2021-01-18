@@ -8,6 +8,8 @@ use App\Repositories\CartRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\ItemRepository;
+
 class EloquentCart implements CartRepository
 {
 	private $cart;
@@ -35,26 +37,38 @@ class EloquentCart implements CartRepository
 	}
 
 	public function delete($item_id) {
-		DB::transaction(function() use ($item_id) {
-			$this->cart->where('item_id', $item_id)->delete();
-			DB::table('items')->where('id', $item_id)->update([
-				'stock' => 1 //$this->getCart($item_id)->quantity + $this->getCart($item_id)->item->stock
-			]);
-		});
+		if ($this->getCart($item_id) == null) {
+			return false;
+		} else {
+			DB::transaction(function() use ($item_id) {
+				$cart = $this->getCart($item_id);
+				$cart_info = $this->getCartForView()->where('item_id', $item_id);
+				$this->cart->where('item_id', $item_id)->delete();
+				DB::table('items')->where('id', $item_id)->update([
+					'stock' => $cart_info[0]['quantity'] + $cart['item']['stock']
+				]);
+			});
+			return true;
+		}
 	}
 
 	public function add(array $data) {
-		DB::transaction(function() use ($data) {
-			$this->cart->create([
-				'user_id' => Auth::id(),
-				'item_id' => $data['item_id'],
-				'quantity' => $data['quantity'],
-				'updated_at' => null
-			]);
-			DB::table('items')->where('id', $data['item_id'])->update([
-				'stock' => $this->getCart($data['item_id'])->item->stock - $data['quantity']
-			]);
-		});
-	}
+		if ($data['quantity'] > Item::findOrFail($data['item_id'])->stock || $data['quantity'] < 1) {
+			return false;
+		} else {
+			DB::transaction(function() use ($data) {
+				$this->cart->create([
+					'user_id' => Auth::id(),
+					'item_id' => $data['item_id'],
+					'quantity' => $data['quantity'],
+					'updated_at' => null
+				]);
 
+				DB::table('items')->where('id', $data['item_id'])->update([
+					'stock' => $this->getCart($data['item_id'])->item->stock - $data['quantity']
+				]);
+			});
+			return true;
+		}
+	}
 }
