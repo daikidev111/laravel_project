@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-@if (session('success'))
-<strong>{{ session('success') }}</strong>
+@if (session('message'))
+<strong>{{ session('message') }}</strong>
 @endif
 
 @if ($carts->count() > 0)
@@ -13,6 +13,7 @@
 <th class="mdl-data-table__cell--non-numeric">商品名</th>
 <th class="mdl-data-table__cell--non-numeric">価格</th>
 <th class="mdl-data-table__cell--non-numeric">購入数</th>
+<th class="mdl-data-table__cell--non-numeric">小計</th>
 <th class="mdl-data-table__cell--non-numeric">削除</th>
 </tr>
 </thead>
@@ -22,6 +23,7 @@
 <td class="mdl-data-table__cell--non-numeric">{{ $cart->item->name }}</a></td>
 <td class="mdl-data-table__cell--non-numeric">{{ $cart->item->price }}円</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $cart->quantity }}</td>
+<td class="mdl-data-table__cell--non-numeric">{{ $cart->quantity * $cart->item->price }}</td>
 <td class="mdl-data-table__cell--non-numeric">
 <form action="{{ route('cart.delete', $cart->item_id) }}" method="POST">
 {{ method_field('DELETE') }}

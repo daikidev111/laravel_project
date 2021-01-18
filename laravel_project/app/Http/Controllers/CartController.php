@@ -26,15 +26,15 @@ final class CartController extends Controller
 	public function delete($item_id)
 	{
 		if ($this->cart->delete(intval($item_id))) {
-			return redirect()->route('cart.index')->with('success', 'カート内の商品の削除に成功しました');
+			return redirect()->route('cart.index')->with('message', 'カート内の商品の削除に成功しました');
 		}
-		return redirect()->route('cart.index')->with('success', 'カート内の商品を削除する際にエラーが起きました。もう一度お試しください');
+		return redirect()->route('cart.index')->with('message', 'カート内の商品を削除する際にエラーが起きました。もう一度お試しください');
 	}
 
 	public function add(Request $request) {
 		if ($this->cart->add($request->all())) {
-			return redirect()->route('cart.index')->with('success', '商品をカートに追加しました');
+			return redirect()->route('cart.index')->with('message', '商品をカートに追加しました');
 		}
-		return redirect()->route('cart.index')->with('success', '商品をカートに追加する際にエラーが起きました。もう一度お試しください');
+		return redirect()->route('cart.index')->with('message', '商品をカートに追加する際にエラーが起きました。もう一度お試しください');
 	}
 }

@@ -32,7 +32,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/login') }}">
+                    <a class="navbar-brand" href="{{ route('item.index') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
