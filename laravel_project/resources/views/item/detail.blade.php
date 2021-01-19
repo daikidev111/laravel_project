@@ -35,13 +35,18 @@
 
 @if ($item['stock'] > 0)
 <td class="mdl-data-table__cell--non-numeric">在庫あり</td>
+
+{{-- For logged-in user --}}
 @auth('user')
 <td class="mdl-data-table__cell--non-numeric">
 
+{{-- add form --}}
 <form action="{{ route('cart.add') }}" method="POST">
 {{ csrf_field() }}
 <input type="hidden" name="item_id" value="{{ $item->id }}">
 <input type="submit" value="カートに追加する" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+
+{{-- Select box for quantity --}}
 <small>数量</small>
 <select name="quantity">
 @for ($i = 1; $i <= $item['stock']; $i++)
@@ -49,17 +54,23 @@
 @endfor
 </select>
 </form>
-
 </td>
 
+
+
+{{-- if not logged in --}}
 @else
 <td class="mdl-data-table__cell--non-numeric">ログインしてください</td>
 @endauth
 
+{{-- no stock available--}}
 @else
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
+
+{{-- for logged-in user --}}
 @auth('user')
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
+{{-- if no logged in --}}
 @else
 <td class="mdl-data-table__cell--non-numeric">ログインしてください</td>
 @endif
