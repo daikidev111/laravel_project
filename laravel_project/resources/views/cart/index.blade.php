@@ -43,6 +43,6 @@
 @endif
 <br>
 <br>
-<a href="{{ route('item.index') }}">商品一覧へ</a>
+<a href="{{ route('item.index') }}">商品一覧へ</a> | <a href="{{ route('address.index') }}">お届け先選択</a>
 </div>
 @endsection

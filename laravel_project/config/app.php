@@ -178,6 +178,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\ItemServiceProvider::class,
 		App\Providers\CartServiceProvider::class,
+		App\Providers\AddressServiceProvider::class,
     ],
 
     /*
