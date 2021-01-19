@@ -30,10 +30,31 @@ Route::get('/', function() { return view('welcome'); })->name('welcome');
 User認証時
 */
 Route::group(['middleware' => 'auth:user'], function() {
+	//home
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	//Cart Routes
 	Route::get('/cart', 'CartController@index')->name('cart.index');
 	Route::DELETE('/cart/{item_id}', 'CartController@delete')->name('cart.delete');
 	Route::post('/cart', 'CartController@add')->name('cart.add');
+
+	//address routes
+	Route::resource('address', 'AddressController', [
+		'except' => [
+			'show',
+		],
+		'names' => [
+			'create' => 'address.create',
+			'index' => 'address.index',
+			'store' => 'address.store',
+			'edit' => 'address.edit',
+			'update' => 'address.update',
+			'destroy' => 'address.delete',
+		],
+		'parameters' => [
+			'address' => 'id'
+		]
+	]);
 });
 
 /*

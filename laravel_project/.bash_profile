@@ -7,4 +7,4 @@ alias mid='cd ~/../www/kubo421/laravel_project/laravel_project/app/Http/Middlewa
 alias data='cd ~/../www/kubo421/laravel_project/laravel_project/database'
 alias routes='cd ~/../www/kubo421/laravel_project/laravel_project/routes'
 alias lara='cd ~/../www/kubo421/laravel_project/laravel_project'
-
+alias repo='cd ~/../www/kubo421/laravel_project/laravel_project/app/Repositories'
