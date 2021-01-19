@@ -21,6 +21,7 @@
 <thead>
 <tr>
 <th class="mdl-data-table__cell--non-numeric">商品名</th>
+<th class="mdl-data-table__cell--non-numeric">商品説明</th>
 <th class="mdl-data-table__cell--non-numeric">値段</th>
 <th class="mdl-data-table__cell--non-numeric">在庫の有無</th>
 <th class="mdl-data-table__cell--non-numeric">カートに追加</th>
@@ -31,6 +32,7 @@
 <tbody>
 <tr>
 <td class="mdl-data-table__cell--non-numeric">{{ $item['name'] }}</td>
+<td class="mdl-data-table__cell--non-numeric">{{ $item['description'] }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $item['price'] }}円</td>
 
 @if ($item['stock'] > 0)

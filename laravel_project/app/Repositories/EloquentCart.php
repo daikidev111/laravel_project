@@ -42,10 +42,10 @@ class EloquentCart implements CartRepository
 		} else {
 			DB::transaction(function() use ($item_id) {
 				$cart = $this->getCart($item_id);
-				$cart_info = $this->getCartForView()->where('item_id', $item_id);
+				$cart_info = $this->getCartForView()->where('item_id', $item_id)->first();
 				$this->cart->where('item_id', $item_id)->delete();
 				DB::table('items')->where('id', $item_id)->update([
-					'stock' => $cart_info[0]['quantity'] + $cart['item']['stock']
+					'stock' => $cart_info['quantity'] + $cart['item']['stock']
 				]);
 			});
 			return true;
