@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\AddressRepository;
-use App\Http\Requests\AddressAddRequest;
+use App\Http\Requests\AddressRequest;
 use Illuminate\Support\Facades\Auth;
 class AddressController extends Controller
 {
@@ -25,7 +25,7 @@ class AddressController extends Controller
 		return view('address.create');
 	}
 
-	public function store(AddressAddRequest $request)
+	public function store(AddressRequest $request)
 	{
 		$this->address->store($request->all());
 		return redirect()->route('address.index')->with('message', 'お届け先の追加に成功しました');
@@ -40,7 +40,7 @@ class AddressController extends Controller
         return view('address.edit', compact('address'));
 	}
 
-	public function update(Request $request, $id)
+	public function update(AddressRequest $request, $id)
 	{
 		$this->address->update($request->all(), $id);
 		return redirect()->route('address.index')->with('message', 'お届け先の編集に成功しました');

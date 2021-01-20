@@ -36,7 +36,7 @@
 
 市区町村:
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input class="mdl-textfield__input" type="text" name="city" value="{{ $address->prefecture }}">
+<input class="mdl-textfield__input" type="text" name="city" value="{{ $address->city }}">
 <label class="mdl-textfield__label">変更先市区町村を入力してください</label>
 </div>
 

@@ -20,7 +20,7 @@ class CreateAddressTable extends Migration
 			$table->integer('postal_code');
 			$table->string('prefecture');
 			$table->string('city');
-			$table->string('building')->nullable();
+			$table->string('building');
 			$table->integer('phone')->unsigned();
 			$table->timestamp('created_at')->useCurrent();
 			$table->timestamp('updated_at')->nullable();
