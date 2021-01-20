@@ -15,7 +15,7 @@
 @endif
 
 {{-- table --}}
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border="1" style="table-layout: fixed; width: 100%">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border="1" style="table-layout: flex; width: 100%">
 
 {{-- table columns --}}
 <thead>

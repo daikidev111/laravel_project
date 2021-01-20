@@ -19,7 +19,7 @@ class EloquentCart implements CartRepository
 	}
 
 	public function getCart($item_id) {
-		$cart = $this->cart->where('item_id', $item_id)->first();
+		$cart = $this->cart->whereRaw('item_id = ? AND user_id = ?', [$item_id, Auth::id()])->first();
 		return $cart;
 	}
 
@@ -43,7 +43,7 @@ class EloquentCart implements CartRepository
 			DB::transaction(function() use ($item_id) {
 				$cart = $this->getCart($item_id);
 				$cart_info = $this->getCartForView()->where('item_id', $item_id)->first();
-				$this->cart->where('item_id', $item_id)->delete();
+				$this->cart->whereRaw('item_id = ? AND user_id = ?', [$item_id, Auth::id()])->delete();
 				DB::table('items')->where('id', $item_id)->update([
 					'stock' => $cart_info['quantity'] + $cart['item']['stock']
 				]);
