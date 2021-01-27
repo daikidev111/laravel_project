@@ -20,7 +20,7 @@ class EloquentAddress implements AddressRepository {
 	}
 
 	public function getAddress($id) {
-		$address = $this->address->findOrFail($id);
+		$address = $this->address->whereRaw('id = ? AND user_id = ?', [$id, Auth::id()])->first();
 		return $address;
 	}
 
@@ -36,15 +36,40 @@ class EloquentAddress implements AddressRepository {
 		]);
 	}
 
+	public function checkDuplicates(array $data) {
+		$address = $this->address->whereRaw('postal_code = ? AND prefecture = ? AND city = ? AND building = ? AND phone = ? AND user_id = ?', [
+			$data['postal_code'],
+			$data['prefecture'],
+			$data['city'],
+			$data['building'],
+			$data['phone'],
+			Auth::id(),
+		])->first();
+
+		// if the address is empty then it means there is no duplicates, hence it should return false
+		if (empty($address)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function update(array $data, $id) {
-		$this->address->findOrFail($id)->update($data);
+		$address = $this->getAddress($id);
+		if (empty($address)) {
+			return false;
+		}
+		$address->update($data);
+		return true;
 	}
 
 	public function delete($id) {
-		$validate = $this->address->findOrFail($id)->delete();
-		if (empty($validate)) {
+		$address = $this->getAddress($id);
+		if (empty($address)) {
 			return false;
+		} else {
+			$address->delete();
+			return true;
 		}
-		return true;
 	}
 }

@@ -7,7 +7,7 @@
 @endif
 
 @if ($carts->count() > 0)
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" order="1" style="table-layout: fixed; width: 100%">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" order="1" style="table-layout: flex; width: 100%">
 <thead>
 <tr>
 <th class="mdl-data-table__cell--non-numeric">商品名</th>

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src='https://ajaxzip3.github.io/ajaxzip3.js' charset='UTF-8'></script>
 <div class="container">
 <div class="panel panel-default">
 <div class="panel-heading">お届け先編集</div>
@@ -19,7 +20,7 @@
 
 郵便番号:
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="postal_code" value="{{ $address->postal_code }}">
+<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="postal_code" value="{{ $address->postal_code }}" onKeyUp="AjaxZip3.zip2addr(this, '', 'prefecture', 'city');">
 <label class="mdl-textfield__label">変更先郵便番号を入力してください</label>
 <span class="mdl-textfield__error">数字ではありません</span>
 </div>

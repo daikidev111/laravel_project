@@ -56,12 +56,24 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu">
-                                    <li>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{{ route('item.index') }}">商品一覧</a>
+									</li>
+
+									<li>
+										<a href="{{ route('address.index') }}">お届け先選択一覧</a>
+									</li>
+
+									<li>
+										<a href="{{ route('cart.index') }}">カート一覧</a>
+									</li>
+
+									<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            ログアウト
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

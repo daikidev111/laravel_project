@@ -53,9 +53,10 @@
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
-                                </button>
+								</button>
+								&nbsp;&nbsp;&nbsp;<a href="">パスワードを忘れた方はこちらへ</a>
                             </div>
-                        </div>
+						</div>
                     </form>
                 </div>
             </div>
