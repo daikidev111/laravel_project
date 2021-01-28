@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+					</button>
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ route('item.index') }}">
@@ -41,7 +41,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
-                    </ul>
+					</ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -70,6 +70,10 @@
 									</li>
 
 									<li>
+										<a href="{{ route('cart.index') }}">アカウント情報</a>
+									</li>
+
+									<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,10 +84,10 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>
-                            </li>
+								</ul>
+							</li>
                         @endguest
-                    </ul>
+					</ul>
                 </div>
             </div>
         </nav>

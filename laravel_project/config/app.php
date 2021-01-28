@@ -229,4 +229,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 	],
+
+	'passwords' => [
+		'users' => [
+			'provider' => 'users',
+			'table' => 'password_resets',
+			'expire' => 30,
+		],
+	],
 ];
