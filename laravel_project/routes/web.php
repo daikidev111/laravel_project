@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth:user'], function() {
 			'address' => 'id'
 		]
 	]);
+
+	//account routes
+	Route::get('/account/detail/{id}', 'AccountController@show')->name('account.detail');
 });
 
 /*

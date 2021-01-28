@@ -6,6 +6,17 @@
 <strong>{{ session('message') }}</strong>
 @endif
 
+{{-- display error --}}
+@if ($errors->any())
+<div class="errors">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
+
 @if ($carts->count() > 0)
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" order="1" style="table-layout: flex; width: 100%">
 <thead>

@@ -3,6 +3,15 @@
 @section('content')
 <script src='https://ajaxzip3.github.io/ajaxzip3.js' charset='UTF-8'></script>
 <div class="container">
+@if ($errors->any())
+<div class="errors">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
 <div class="panel panel-default">
 <div class="panel-heading">お届け先編集</div>
 <div class="panel-body">

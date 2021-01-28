@@ -179,6 +179,7 @@ return [
 		App\Providers\ItemServiceProvider::class,
 		App\Providers\CartServiceProvider::class,
 		App\Providers\AddressServiceProvider::class,
+		App\Providers\AccountServiceProvider::class,
     ],
 
     /*

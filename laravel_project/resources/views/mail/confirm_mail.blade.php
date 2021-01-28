@@ -3,8 +3,8 @@
 <head>
 	<!-- https://codepen.io/rKalways/pen/VwwQKpV -->
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>パスワード再設定の案内</title>
-    <meta name="description" content="Reset Password Email Template.">
+    <title>メールアドレスの変更</title>
+    <meta name="description" content="Reset Email Template.">
     <style type="text/css">
         a:hover {text-decoration: underline !important;}
     </style>
@@ -36,9 +36,9 @@
                                         <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">Bottle-O!をご利用いただきありがとうございます。</h1>
                                         <span
                                             style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
-                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">パスワード再設定のために、本メール送信時間から30分以内に下記の再発行ボタンをクリックしてパスワードをリセットしてください</p>
+                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">以下のボタンをクリックし、メールアドレスの変更を完了してください。</p>
                                         <a href="{{ $reset_url }}"
-                                            style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">パスワードリセット</a>
+                                            style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">メールアドレスの変更</a><!--TODO: change the href link later! -->
                                     </td>
                                 </tr>
                                 <tr>

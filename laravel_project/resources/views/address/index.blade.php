@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container">
+@if ($errors->any())
+<div class="errors">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
 {{-- for displaying a message --}}
 @if (session('message'))
 <strong>  {{ session('message') }}</strong>
