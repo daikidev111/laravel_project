@@ -70,10 +70,6 @@
 									</li>
 
 									<li>
-										<a href="{{ route('cart.index') }}">アカウント情報</a>
-									</li>
-
-									<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
