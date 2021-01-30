@@ -15,9 +15,19 @@ final class AccountController extends Controller
 		$this->account = $account;
 	}
 
-	public function show() {
-		$account_detail = $this->account->getAccount();
-		return view('account.detail', compact('account_detail'));
+	public function show()
+	{
+		return view('account.detail');
+	}
+
+	public function editAccount()
+	{
+		return view('account.edit_account');
+	}
+
+	public function editPassword()
+	{
+		return view('account.edit_password');
 	}
 
 }

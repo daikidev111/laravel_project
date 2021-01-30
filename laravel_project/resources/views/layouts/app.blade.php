@@ -70,7 +70,7 @@
 									</li>
 
 									<li>
-										<a href="{{ route('cart.index') }}">アカウント情報</a>
+										<a href="{{ route('account.detail') }}">アカウント情報</a>
 									</li>
 
 									<li>

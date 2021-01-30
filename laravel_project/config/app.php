@@ -180,6 +180,7 @@ return [
 		App\Providers\CartServiceProvider::class,
 		App\Providers\AddressServiceProvider::class,
 		App\Providers\AccountServiceProvider::class,
+		App\Providers\ViewComposerServiceProvider::class,
     ],
 
     /*
