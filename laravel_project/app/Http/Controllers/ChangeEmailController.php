@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\EmailResetRequest;
+use App\Http\Requests\ChangeEmailRequest;
 use Illuminate\Support\Facades\Auth;
 use App\EmailReset;
 use Illuminate\Support\Facades\DB;
@@ -21,12 +21,10 @@ class ChangeEmailController extends Controller
 {
 	use Notifiable;
 
-	public function sendChangeEmailLink(EmailResetRequest $request)
+	public function sendChangeEmailLink(ChangeEmailRequest $request)
 	{
-		//identify which user is sending a form request
 		$user = User::find(Auth::id());
 
-		//Check if the passwords match
 		if (Hash::check($request->input('current_password'), $user->password)) {
 				$new_email = $request->input('email');
 				$user_name = $request->input('name');
@@ -89,7 +87,7 @@ class ChangeEmailController extends Controller
 	}
 
 
-	private function randomKeyGenerator(int $length = 64, string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'): string
+	private function randomKeyGenerator($length = 64, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 	{
 		if ($length < 1) {
 			throw new \RangeException("Length must be a positive integer");
