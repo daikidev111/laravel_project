@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\ChangeEmailRequest;
 
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +50,7 @@ final class ChangeEmailController extends Controller
 
 					Notification::route('mail', $new_email)->notify(new ResetEmailNotification($token));
 				});
-			return redirect()->route('account.edit_account')->with('message', '確認用メールを送信いたしました。');
+				return redirect()->route('account.edit_account')->with('message', '確認用メールを送信いたしました。');
 			} else {
 				if ($user->name !== $user_name) {
 					$user->name = $user_name;
@@ -65,7 +64,7 @@ final class ChangeEmailController extends Controller
 		}
 	}
 
-	public function reset(Request $request, $token)
+	public function reset($token)
 	{
 		$email_reset = DB::table('email_resets')->where('token', $token)->first();
 		if ($email_reset && !$this->tokenExpired($email_reset->created_at)) {
@@ -93,7 +92,7 @@ final class ChangeEmailController extends Controller
 	private function randomKeyGenerator($length = 64, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 	{
 		if ($length < 1) {
-			throw new \RangeException("長さは１以上です");
+			throw new RangeException("長さは１以上です");
 		}
 		$pieces = [];
 		$max = mb_strlen($keyspace, '8bit') - 1;
