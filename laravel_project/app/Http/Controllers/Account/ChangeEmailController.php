@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Account;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ChangeEmailRequest;
+
 use Illuminate\Support\Facades\Auth;
-use App\EmailReset;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 use App\Notifications\ResetEmailNotification;
 use Notification;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
+
+use App\EmailReset;
 use App\User;
 
 require 'vendor/autoload.php';
 use Carbon\Carbon;
 
-
-class ChangeEmailController extends Controller
+final class ChangeEmailController extends Controller
 {
 	use Notifiable;
 
@@ -62,7 +65,8 @@ class ChangeEmailController extends Controller
 		}
 	}
 
-	public function reset(Request $request, $token) {
+	public function reset(Request $request, $token)
+	{
 		$email_reset = DB::table('email_resets')->where('token', $token)->first();
 		if ($email_reset && !$this->tokenExpired($email_reset->created_at)) {
 			$user = User::find(Auth::id());
@@ -82,23 +86,20 @@ class ChangeEmailController extends Controller
 
 	private function tokenExpired($created_at)
 	{
-		$expiry_time = 60 * 60;
+		$expiry_time = 60 * 30;
 		return Carbon::parse($created_at)->addSeconds($expiry_time)->isPast();
 	}
-
 
 	private function randomKeyGenerator($length = 64, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 	{
 		if ($length < 1) {
-			throw new \RangeException("Length must be a positive integer");
+			throw new \RangeException("長さは１以上です");
 		}
 		$pieces = [];
 		$max = mb_strlen($keyspace, '8bit') - 1;
 		for ($i = 0; $i < $length; ++$i) {
-			$pieces []= $keyspace[random_int(0, $max)];
+			$pieces[] = $keyspace[random_int(0, $max)];
 		}
-
 		return implode('', $pieces);
 	}
-
 }

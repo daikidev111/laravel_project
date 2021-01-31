@@ -57,16 +57,16 @@ Route::group(['middleware' => 'auth:user'], function() {
 	]);
 
 	//account routes
-	Route::get('/account', 'AccountController@show')->name('account.detail');
-	Route::get('/account/edit_account', 'AccountController@editAccount')->name('account.edit_account');
-	Route::get('/account/reset_password', 'AccountController@editPassword')->name('account.edit_password');
+	Route::get('/account', 'Account\AccountController@show')->name('account.detail');
+	Route::get('/account/edit_account', 'Account\AccountController@editAccount')->name('account.edit_account');
+	Route::get('/account/reset_password', 'Account\AccountController@editPassword')->name('account.edit_password');
 
 	//reset email
-	Route::post('/email', 'ChangeEmailController@sendChangeEmailLink')->name('account.send_mail');
-	Route::get('/email/reset/{token}', 'ChangeEmailController@reset');
+	Route::post('/email', 'Account\ChangeEmailController@sendChangeEmailLink')->name('account.send_mail');
+	Route::get('/email/change/{token}', 'Account\ChangeEmailController@reset');
 
 	//change password
-	Route::post('/password/change', 'ChangePasswordController@changePassword')->name('account.change_password');
+	Route::post('/password/change', 'Account\ChangePasswordController@changePassword')->name('account.change_password');
 });
 
 /*

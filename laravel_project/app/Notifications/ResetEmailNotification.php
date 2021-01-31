@@ -40,23 +40,11 @@ class ResetEmailNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+	public function toMail($notifiable)
+	{
 		return (new MailMessage)->subject($this->title)->view('mail.confirm_mail', [
-			'reset_url' => url('email/reset', $this->token),
+			'reset_url' => url('email/change', $this->token),
 		]);
-    }
+	}
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
-    }
 }
