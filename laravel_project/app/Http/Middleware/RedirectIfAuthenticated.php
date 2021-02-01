@@ -17,10 +17,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
 	{
+/*
 		$redir = '/home';
 
 		switch ($guard) {
-		case "admin":
+		case 'admin':
 			$redir = '/admin/home';
 			break;
 		default:
@@ -28,10 +29,24 @@ class RedirectIfAuthenticated
 			break;
 		}
 
-        if (Auth::guard($guard)->check()) {
-            return redirect($redir);
-        }
+		if (Auth::guard($guard)->check()) {
+			return redirect($redir);
+		}
+		return $next($request);
+ */
 
-        return $next($request);
-    }
+		switch ($guard) {
+			case 'admin':
+				if (Auth::guard($guard)->check()) {
+					return redirect()->route('admin.item.index');
+				}
+				break;
+			default:
+				if (Auth::guard($guard)->check()) {
+					return redirect('/home');
+				}
+				break;
+		}
+		return $next($request);
+	}
 }

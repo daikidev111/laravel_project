@@ -86,6 +86,8 @@ Admin認証後
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
 	Route::get('/home', 'Admin\HomeController@index')->name('admin.home');
+	Route::get('account', 'Admin\AccountController@index')->name('admin.account.index');
+	Route::get('account/detail/{id}', 'Admin\AccountController@detail')->name('admin.account.detail');
 	//デフォルトのURIを変えないといけないためここでSHOWの定義
 	Route::get('item/detail/{id}', 'Admin\ItemController@show')->name('admin.item.detail');
 	Route::resource('item', 'Admin\ItemController', [

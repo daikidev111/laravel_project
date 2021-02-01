@@ -14,7 +14,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
 	public function boot()
 	{
-		View::composer(['account.*'], AuthComposer::class);
+		View::composer(['account.*', 'admin.account.index'], AuthComposer::class);
 	}
 
     /**
