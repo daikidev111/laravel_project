@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 <h1>既存商品の編集</h1>
-<form action="{{ route('admin.item.update', $item_arr->id) }}" method="POST">
+<form action="{{ route('admin.item.update', $item_arr->id) }}" method="POST" enctype="multipart/form-data">
 {{ method_field('PATCH') }}
 {{ csrf_field() }}
 
@@ -26,6 +26,10 @@
 <label class="mdl-textfield__label">在庫数を入力してください</label>
 <span class="mdl-textfield__error">数字ではありません</span>
 </div>
+<br>
+
+<input type="file" name="image">
+
 <br>
 <br>
 <input type="submit" value="編集する" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
