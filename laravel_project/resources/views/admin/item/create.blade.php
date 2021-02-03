@@ -36,7 +36,7 @@
 
 <br>
 
-<input type="file" name="image">
+<input type="file" name="image" enctype="multipart/form-data">
 
 <br>
 <br>

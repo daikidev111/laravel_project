@@ -8,6 +8,8 @@
 <br>
 <a href="{{ route('admin.item.create') }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">作成</a>
 <br>
+
+<!--<img class="logo" src="../../storage/image/1612325242.png" alt="logo">-->
 <br>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: fixed; width: 100%">
 <thead>
@@ -28,6 +30,7 @@
 @else
 <td class="mdl-data-table__cell--non-numeric">在庫無し</td>
 @endif
+
 <td class="mdl-data-table__cell--non-numeric"><a href="{{ route('admin.item.edit', $item->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">編集</a></td>
 </tr>
 @endforeach

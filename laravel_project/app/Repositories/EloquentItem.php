@@ -4,10 +4,13 @@ namespace App\Repositories;
 
 use App\Item;
 use App\Repositories\ItemRepository;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class EloquentItem implements ItemRepository
 {
 	private $item;
+	private $dir = '/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image';
 
 	public function __construct(Item $item)
 	{
@@ -29,12 +32,18 @@ class EloquentItem implements ItemRepository
 
 	public function store(array $data)
 	{
+		if (empty($data['image'])) {
+			$image = null;
+		} else {
+			$image = $this->uploadImage($data['image']);
+		}
 		return $this->item->create([
 			'name' => $data['name'],
 			'description' => $data['description'],
 			'price' => $data['price'],
 			'stock' => $data['stock'],
-			'updated_at' => null
+			'updated_at' => null,
+			'image' => $image,
 		]);
 	}
 
@@ -42,4 +51,13 @@ class EloquentItem implements ItemRepository
 	{
 		return $this->item->findOrFail($id)->update($data);
 	}
+
+	public function uploadImage($image_data)
+	{
+		$image = time() . "." . $image_data->getClientOriginalExtension();
+		$image_data->move('/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image', $image);
+		return $image;
+	}
+
+
 }

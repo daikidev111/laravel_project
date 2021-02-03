@@ -9,4 +9,5 @@ interface ItemRepository
 	public function getItem($id);
 	public function store(array $data);
 	public function update($id, array $data);
+	public function uploadImage($image_data);
 }

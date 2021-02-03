@@ -27,7 +27,8 @@ class StoreRequest extends FormRequest
 			'name' => 'required|max:191',
 			'description' => 'required|max:191',
 			'price' => 'required|integer|min:0|max:999999',
-			'stock' => 'required|integer|min:0|max:99999'
+			'stock' => 'required|integer|min:0|max:99999',
+            'image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
 	}
 
@@ -45,7 +46,11 @@ class StoreRequest extends FormRequest
 			'stock.required' => '在庫は必須です',
 			'stock.integer' => '在庫数は整数です',
 			'stock.min' => '在庫数は０以上にしてください',
-			'stock.max' => '在庫数は最大値を超えています'
+			'stock.max' => '在庫数は最大値を超えています',
+			'image.file' => 'ああ',
+			'image.imag' => 'あああ',
+			'image.mime' => 'あああ',
+			'image.max' => 'ああ',
 		];
 	}
 

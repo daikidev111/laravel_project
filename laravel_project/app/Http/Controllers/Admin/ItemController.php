@@ -10,7 +10,6 @@ use App\Repositories\ItemRepository;
 final class ItemController extends Controller
 {
 	private $item;
-	const NUMBER_OF_ITEMS = 5;
 
 	public function __construct(ItemRepository $item)
 	{
@@ -25,7 +24,7 @@ final class ItemController extends Controller
 
 	public function index()
 	{
-		$item_arr = $this->item->paginate(self::NUMBER_OF_ITEMS);
+		$item_arr = $this->item->paginate(config('const.Item')['PAGE']);
 		return view('admin.item.index', compact('item_arr'));
 	}
 

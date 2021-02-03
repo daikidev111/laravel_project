@@ -14,6 +14,7 @@ class Item extends Model
 		'stock',
 		'price',
 		'updated_at',
+		'image'
 	];
 	protected $table = 'items';
 

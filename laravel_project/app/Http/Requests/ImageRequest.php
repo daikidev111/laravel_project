@@ -14,7 +14,7 @@ class ImageRequest extends FormRequest
 	public function rules()
 	{
 		return [
-            'image' => => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048'
 		];
 	}
 }
