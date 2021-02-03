@@ -7,20 +7,19 @@ use App\Address;
 
 final class AccountController extends Controller
 {
-	const NUMBER_OF_USERS = 5;
-
 	public function index()
 	{
 		$user_data = new User();
-		$users = $user_data->latest()->paginate(self::NUMBER_OF_USERS);
+		$users = $user_data->latest()->paginate(config('const.Account')['PAGE']);
 		return view('admin.account.index', compact('users'));
 	}
 
 	public function detail($id)
 	{
 		$user = new User();
-		$address = new Address();
+		$user->findOrFail($id);
 		$user_details = $user->where('id', $id)->get();
+		$address = new Address();
 		$address_details = $address->where('user_id', $id)->get();
 		return view('admin.account.detail', compact('user_details', 'address_details'));
 	}

@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ItemRepository;
-/**
- * Final Controller class extended from Controller
- * エンキャプスレーションによる抽象化、また継承連鎖の阻止
- *
- * @return void
- */
+
 final class ItemController extends Controller
 {
 	private $item;

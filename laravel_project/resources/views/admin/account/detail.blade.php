@@ -4,7 +4,7 @@
 <div class="container">
 
 <b>ユーザー情報</b>
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%;">
 <thead>
 <tr>
 <th class="mdl-data-table__cell--non-numeric">ユーザー名</th>
@@ -24,7 +24,7 @@
 <br>
 
 <b>お届け先一覧</b>
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%;">
 
 @if ($address_details->count() > 0)
 <thead>

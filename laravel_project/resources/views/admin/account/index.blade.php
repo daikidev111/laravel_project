@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%;">
 <thead>
 <tr>
 <th class="mdl-data-table__cell--non-numeric">会員一覧</th>
