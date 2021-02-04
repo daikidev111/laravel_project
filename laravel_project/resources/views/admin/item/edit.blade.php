@@ -28,14 +28,12 @@
 </div>
 <br>
 
-<input type="file" name="image">
+<input type="file" name="image" accept="image/jpeg, image/jpg, image/gif, image/png">
 
 <br>
 <br>
 <input type="submit" value="編集する" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
-<br>
-<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
 <br>
 @if ($errors->any())
 <div class="erros">
@@ -46,5 +44,7 @@
 </ul>
 </div>
 @endif
+<br>
+<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
 </div>
 @endsection

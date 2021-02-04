@@ -26,7 +26,8 @@ class UpdateRequest extends FormRequest
 		return [
 			'name' => 'required|max:191',
 			'description' => 'required|max:191',
-			'stock' => 'required|integer|min:0|max:99999'
+			'stock' => 'required|integer|min:0|max:99999',
+			'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
 		];
 	}
 
@@ -40,7 +41,10 @@ class UpdateRequest extends FormRequest
 			'stock.required' => '在庫は必須です',
 			'stock.integer' => '在庫数は整数です',
 			'stock.min' => '在庫数は０以上にしてください',
-			'stock.max' => '在庫数は最大値を超えています'
+			'stock.max' => '在庫数は最大値を超えています',
+			'image.image' => '画像ファイルを指定してください',
+			'image.mimes' => 'jpeg, png, jpg, gifの内いずれかの形式の画像ファイルを指定してください',
+			'image.max' => '2048MB以下の画像ファイルを指定してください',
 		];
 	}
 }

@@ -10,7 +10,6 @@ use Illuminate\Http\File;
 class EloquentItem implements ItemRepository
 {
 	private $item;
-	private $dir = '/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image';
 
 	public function __construct(Item $item)
 	{
@@ -49,7 +48,18 @@ class EloquentItem implements ItemRepository
 
 	public function update($id, array $data)
 	{
-		return $this->item->findOrFail($id)->update($data);
+		if (empty($data['image'])) {
+			$image = $this->editImage(null, $id);
+		} else {
+			$image = $this->editImage($data['image'], $id);
+		}
+		return $this->item->findOrFail($id)->update([
+			'name' => $data['name'],
+			'description' => $data['description'],
+			'stock' => $data['stock'],
+			'updated_at' => null,
+			'image' => $image,
+		]);
 	}
 
 	public function uploadImage($image_data)
@@ -59,5 +69,20 @@ class EloquentItem implements ItemRepository
 		return $image;
 	}
 
-
+	public function editImage($image_data, $id)
+	{
+		$item = $this->getItem($id);
+		if (!empty($image_data)) {
+			if ($item->image == null) {
+				return $this->uploadImage($image_data);
+			} else {
+				unlink('/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image/' . $item->image);
+				$image = $this->uploadImage($image_data);
+				return $image;
+			}
+		} else {
+			$image = $item->image;
+			return $image;
+		}
+	}
 }

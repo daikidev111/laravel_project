@@ -36,7 +36,7 @@
 
 <br>
 
-<input type="file" name="image" enctype="multipart/form-data">
+<input type="file" name="image" accept="image/jpeg, image/jpg, image/gif, image/png">
 
 <br>
 <br>
@@ -44,10 +44,8 @@
 <input type="submit" value="追加する" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
 <br>
-<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
-<br>
 @if ($errors->any())
-<div class ="errors">
+<div class="errors">
 <ul>
 @foreach ($errors->all() as $error)
 <li>{{ $error }}</li>
@@ -55,5 +53,7 @@
 </ul>
 </div>
 @endif
+<br>
+<a href="{{ route('admin.item.index') }}">商品一覧へ</a>
 </div>
 @endsection
