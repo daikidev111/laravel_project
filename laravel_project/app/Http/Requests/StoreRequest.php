@@ -28,8 +28,8 @@ class StoreRequest extends FormRequest
 			'description' => 'required|max:191',
 			'price' => 'required|integer|min:0|max:999999',
 			'stock' => 'required|integer|min:0|max:99999',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ];
+			'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+		];
 	}
 
 	public function messages()

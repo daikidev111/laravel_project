@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-@if (session('success'))
-<strong>{{ session('success') }}</strong>
+@if (session('message'))
+<strong>{{ session('message') }}</strong>
 @endif
 <br>
 <a href="{{ route('admin.item.create') }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">作成</a>

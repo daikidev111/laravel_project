@@ -35,8 +35,11 @@ final class ItemController extends Controller
 
 	public function store(StoreRequest $request)
 	{
-		$this->item->store($request->all());
-		return redirect()->route('admin.item.index')->with('success', '新規商品の追加に成功しました');
+		if ($this->item->store($request->all())) {
+			return redirect()->route('admin.item.index')->with('message', '新規商品の追加に成功しました');
+		} else {
+			return redirect()->route('admin.item.index')->with('message', '新規商品の追加に失敗しました');
+		}
 	}
 
 	public function edit($id)
@@ -47,8 +50,10 @@ final class ItemController extends Controller
 
 	public function update(UpdateRequest $request, $id)
 	{
-		$this->item->update($id, $request->all());
-		return redirect()->route('admin.item.index')->with('success', '既存商品の編集に成功しました');
+		if ($this->item->update($id, $request->all())) {
+			return redirect()->route('admin.item.index')->with('message', '既存商品の編集に成功しました');
+		} else {
+			return redirect()->route('admin.item.index')->with('message', '既存商品の編集に失敗しました');
+		}
 	}
-
 }

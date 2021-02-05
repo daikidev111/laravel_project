@@ -31,58 +31,71 @@ class EloquentItem implements ItemRepository
 
 	public function store(array $data)
 	{
+		$image_validate = false;
 		if (empty($data['image'])) {
 			$image = null;
+			$image_validate = true;
 		} else {
-			$image = $this->uploadImage($data['image']);
+			$image_data = $data['image'];
+			$extension = $image_data->getMimeType();
+			if (in_array($extension, array('image/gif', 'image/png', 'image/jpg', 'image/jpeg'))) {
+				$extension = explode("/", $extension, PATHINFO_EXTENSION);
+				$image = time() . "." . array_pop($extension);
+				$image_data->move('/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image/', $image);
+				$image_validate = true;
+			}
 		}
-		return $this->item->create([
-			'name' => $data['name'],
-			'description' => $data['description'],
-			'price' => $data['price'],
-			'stock' => $data['stock'],
-			'updated_at' => null,
-			'image' => $image,
-		]);
+
+		if ($image_validate) {
+			$this->item->create([
+				'name' => $data['name'],
+				'description' => $data['description'],
+				'price' => $data['price'],
+				'stock' => $data['stock'],
+				'updated_at' => null,
+				'image' => $image,
+			]);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function update($id, array $data)
 	{
-		if (empty($data['image'])) {
-			$image = $this->editImage(null, $id);
-		} else {
-			$image = $this->editImage($data['image'], $id);
-		}
-		return $this->item->findOrFail($id)->update([
-			'name' => $data['name'],
-			'description' => $data['description'],
-			'stock' => $data['stock'],
-			'updated_at' => null,
-			'image' => $image,
-		]);
-	}
-
-	public function uploadImage($image_data)
-	{
-		$image = time() . "." . $image_data->getClientOriginalExtension();
-		$image_data->move('/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image', $image);
-		return $image;
-	}
-
-	public function editImage($image_data, $id)
-	{
 		$item = $this->getItem($id);
-		if (!empty($image_data)) {
-			if ($item->image == null) {
-				return $this->uploadImage($image_data);
-			} else {
-				unlink('/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image/' . $item->image);
-				$image = $this->uploadImage($image_data);
-				return $image;
+		$image_validate = false;
+		$path = '/home/www/kubo421/laravel_project/laravel_project/storage/app/public/image/';
+
+		if (!empty($data['image'])) {
+			$image_data = $data['image'];
+			$extension = $image_data->getMimeType();
+			if (in_array($extension, array('image/gif', 'image/png', 'image/jpg', 'image/jpeg'))) {
+				$extension = explode("/", $extension, PATHINFO_EXTENSION);
+				$image = time() . "." . array_pop($extension);
+				$image_validate = true;
+				if ($item->image == null) {
+					$image_data->move($path, $image);
+				} else {
+					unlink($path . $item->image);
+					$image_data->move($path, $image);
+				}
 			}
 		} else {
 			$image = $item->image;
-			return $image;
+			$image_validate = true;
+		}
+		if ($image_validate) {
+			$this->item->findOrFail($id)->update([
+				'name' => $data['name'],
+				'description' => $data['description'],
+				'stock' => $data['stock'],
+				'updated_at' => null,
+				'image' => $image,
+			]);
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
