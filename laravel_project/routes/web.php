@@ -26,6 +26,10 @@ Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
 Route::get('/', function() { return view('welcome'); })->name('welcome');
 
 
+Route::get('/charge', 'ChargeController@index')->name('payment.index');
+Route::post('/charge/pay', 'ChargeController@charge')->name('payment.pay');
+
+
 /*
 User認証時
 */

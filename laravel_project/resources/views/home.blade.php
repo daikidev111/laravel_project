@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<a href="{{ Route('item.index') }}">アイテム一覧へ</a>
-        </div>
+		</div>
     </div>
 </div>
 @endsection
