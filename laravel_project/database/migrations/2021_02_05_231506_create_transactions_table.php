@@ -10,7 +10,7 @@ class CreateTransactionsTable extends Migration
 	{
 		Schema::create('transactions', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('user_id');
+			$table->integer('user_id');
 			$table->integer('amount');
 			$table->string('currency');
 			$table->string('status');
