@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
 <div class="container">
 @if ($errors->any())
 <div class="errors">
@@ -27,12 +26,13 @@
 </ul>
 </div>
 @endif
-
+<br>
+<br>
 {{-- display message --}}
 @if (session('message'))
 <strong>{{ session('message') }}</strong>
 @endif
-
+<br>
 <br>
 <div class="panel panel-default">
 <div class="panel-heading">購入情報確認</div>
@@ -128,6 +128,7 @@ data-locale="auto"
 data-currency="JPY"
 >
 </script>
+<input type="hidden" name="address_id" value="{{ $address->id }}">
 </form>
 </div>
 @endif

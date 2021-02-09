@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
+
 use App\Cart;
 use App\Item;
 use App\PurchaseItem;
@@ -26,6 +27,7 @@ class ChargeController extends Controller
 {
 	private $cart;
 	private $address;
+	const tax = 1.1; //TODO add it in the const config later
 
 	public function __construct(CartRepository $cart, AddressRepository $address)
 	{
@@ -37,21 +39,20 @@ class ChargeController extends Controller
 	{
 		$carts = $this->cart->getCartForView();
 		$sub = $this->cart->subTotal($carts);
-		$total = $sub * config('const.Tax');
+		$total = $sub * self::tax;
 		$address = $this->address->getAddress($id);
-		if ($address == null) {
-			return redirect()->route('address.confirm_address')->with('message', '正しい住所は見つかりませんでした。');
-		}
 		return view('payment.index', compact('address', 'carts', 'sub', 'total'));
 	}
 
 	public function charge(Request $request)
 	{
 		$carts = $this->cart->getCartForView();
-		$total = config('const.Tax') * $this->cart->subTotal($carts);
-		$charge_id = null;
+		$total = self::tax * $this->cart->subTotal($carts);
+		$chargeId = null;
 		$idempotency_key = rand();
 		$idempotency_key = hash('sha256', $idempotency_key);
+
+		//TODO: validation for address id obtained from the request data as it may be vulnerable to malicious users.
 
 		$address = $this->address->getAddress($request->address_id);
 		if ($address == null) {
@@ -73,8 +74,6 @@ class ChargeController extends Controller
 			], [
 				'idempotency_key' => $idempotency_key,
 			]);
-
-			$charge_id = $charge->id;
 
 			DB::transaction(function() use ($charge, $customer, $address, $request, $carts) {
 				Transaction::create([
@@ -111,12 +110,12 @@ class ChargeController extends Controller
 			return redirect()->route('item.index')->with('message', '支払いを完了致しました');
 
 		} catch (\Exception $e) {
-			if ($charge_id !== null) {
+			if ($chargeId !== null) {
 				Refund::create([
-					'charge' => $charge_id,
+					'charge' => $chargeId,
 				]);
 			}
-			return redirect()->back()->with('message', '決済の支払いが失敗しました。もう一度お試しください');
+			return $e->getMessage();
 		}
 	}
 }
