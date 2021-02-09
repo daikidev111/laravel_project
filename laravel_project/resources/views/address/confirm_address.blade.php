@@ -11,6 +11,7 @@
 </ul>
 </div>
 @endif
+
 {{-- for displaying a message --}}
 @if (session('message'))
 <strong>  {{ session('message') }}</strong>
@@ -18,15 +19,12 @@
 <br>
 
 <div class="panel panel-default">
-<div class="panel-heading">住所選択</div>
+<div class="panel-heading">住所確認画面</div>
 
 <div class="panel-body">
-{{-- If address does not exist --}}
-@if ($address == null)
+@if ($address->count() == 0)
 <p>住所は未登録です。登録してください</p>
 
-
-{{-- If address does exist --}}
 @else
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" class="table table-hover" border="1" style="table-layout: flex; width: 100%">
 
@@ -60,10 +58,10 @@
 </td>
 </tr>
 @endforeach
-@endif
 </tbody>
 </table>
+@endif
 </div>
 </div>
-<a href="{{ route('cart.index') }}">カート内容へ戻る</a>｜<a href="">購入手続きへ</a>
+<a href="{{ route('address.index') }}">住所一覧へ戻る</a>
 @endsection

@@ -14,6 +14,13 @@
 </div>
 @endif
 
+{{-- display message --}}
+@if (session('message'))
+<strong>{{ session('message') }}</strong>
+@endif
+<br>
+
+
 {{-- table --}}
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%;">
 

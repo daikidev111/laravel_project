@@ -16,7 +16,9 @@
 </head>
 
 <body>
+
 <div class="container">
+
 @if ($errors->any())
 <div class="errors">
 <ul>
@@ -26,14 +28,17 @@
 </ul>
 </div>
 @endif
+
 <br>
 <br>
-{{-- display message --}}
+
 @if (session('message'))
 <strong>{{ session('message') }}</strong>
 @endif
+
 <br>
 <br>
+
 <div class="panel panel-default">
 <div class="panel-heading">購入情報確認</div>
 
@@ -101,7 +106,7 @@
 </tbody>
 </table>
 <br>
-<div style="text-align:center">
+<div style="text-align: center;">
 <h4>税抜き価格: {{ $sub }}円</h4>
 <h4>税込価格: {{ $total }}円</h4>
 </div>
@@ -111,7 +116,7 @@
 <br>
 </div>
 </div>
-
+<a href="{{ route('address.confirm_address') }}">住所確認画面へ戻る</a>
 @if ($address !== null &&  $carts->count() > 0)
 {{-- 決済 --}}
 <form action="{{ route('payment.pay') }}" method="POST">

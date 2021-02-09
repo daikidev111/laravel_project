@@ -12,6 +12,13 @@
 </ul>
 </div>
 @endif
+<br>
+{{-- display message --}}
+@if (session('message'))
+<strong>{{ session('message') }}</strong>
+@endif
+<br>
+
 <div class="panel panel-default">
 <div class="panel-heading">お届け先登録</div>
 <div class="panel-body">

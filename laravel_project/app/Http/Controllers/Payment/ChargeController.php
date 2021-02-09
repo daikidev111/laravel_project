@@ -13,7 +13,6 @@ use App\Repositories\AddressRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-
 use App\Cart;
 use App\Item;
 use App\PurchaseItem;
@@ -40,7 +39,7 @@ class ChargeController extends Controller
 		$total = $sub * config('const.Tax');
 		$address = $this->address->getAddress($id);
 		if ($address == null) {
-			return redirect()->route('address.confirm_address')->with('message', '正しい住所は見つかりませんでした。');
+			return redirect()->route('address.confirm_address')->with('message', '正しい住所が見つかりませんでした。');
 		}
 		return view('payment.index', compact('address', 'carts', 'sub', 'total'));
 	}
@@ -55,7 +54,7 @@ class ChargeController extends Controller
 
 		$address = $this->address->getAddress($request->address_id);
 		if ($address == null) {
-			return redirect()->back()->with('message', "不正な住所です。");
+			return redirect()->back()->with('message', '不正な住所です。もう一度お試しください。');
 		}
 
 		try {
@@ -63,14 +62,14 @@ class ChargeController extends Controller
 
 			$customer = Customer::create([
 				'email' => $request->stripeEmail,
-				'source' => $request->stripeToken
+				'source' => $request->stripeToken,
 			]);
 
 			$charge = Charge::create([
 				'customer' => $customer->id,
 				'amount' => $total,
 				'currency' => 'jpy',
-			], [
+				], [
 				'idempotency_key' => $idempotency_key,
 			]);
 
