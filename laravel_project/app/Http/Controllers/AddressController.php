@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\AddressRepository;
 use App\Http\Requests\AddressRequest;
 use Illuminate\Support\Facades\Auth;
+
 final class AddressController extends Controller
 {
 	private $address;
@@ -16,8 +17,12 @@ final class AddressController extends Controller
 
 	public function index()
 	{
-		$address = $this->address->selectAll();
-		return view('address.index', compact('address'));
+		return view('address.index');
+	}
+
+	public function address_list()
+	{
+		return view('address.confirm_address');
 	}
 
 	public function create()

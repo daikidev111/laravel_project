@@ -6,11 +6,28 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
+use App\Repositories\CartRepository;
+use App\Repositories\AddressRepository;
+
 class ChargeController extends Controller
 {
-	public function index()
+	private $cart;
+	private $address;
+	const tax = 1.1;
+
+	public function __construct(CartRepository $cart, AddressRepository $address)
 	{
-		return view('payment.index');
+		$this->cart = $cart;
+		$this->address = $address;
+	}
+
+	public function index($id)
+	{
+		$carts = $this->cart->getCartForView();
+		$sub = $this->cart->subTotal($carts);
+		$total = $sub * self::tax;
+		dd($this->address->getAddress($id));
+		return view('payment.index', compact('carts', 'sub', 'total');
 	}
 
 	public function charge(Request $request)

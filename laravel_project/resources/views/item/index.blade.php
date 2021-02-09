@@ -11,6 +11,11 @@
 </ul>
 </div>
 @endif
+
+@if (session('message'))
+<strong>{{ session('message') }}</strong>
+@endif
+
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="table-layout: flex; width: 100%">
 <thead>
 <tr>

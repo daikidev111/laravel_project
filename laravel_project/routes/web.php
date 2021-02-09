@@ -26,10 +26,6 @@ Route::get('/item/detail/{id}', 'ItemController@show')->name('item.show');
 Route::get('/', function() { return view('welcome'); })->name('welcome');
 
 
-Route::get('/charge', 'ChargeController@index')->name('payment.index');
-Route::post('/charge/pay', 'ChargeController@charge')->name('payment.pay');
-
-
 /*
 User認証時
 */
@@ -43,6 +39,7 @@ Route::group(['middleware' => 'auth:user'], function() {
 	Route::post('/cart', 'CartController@add')->name('cart.add');
 
 	//address routes
+	Route::get('/address/confirm', 'AddressController@address_list')->name('address.confirm_address');
 	Route::resource('address', 'AddressController', [
 		'except' => [
 			'show',
@@ -71,6 +68,10 @@ Route::group(['middleware' => 'auth:user'], function() {
 
 	//change password
 	Route::post('/password/change', 'Account\ChangePasswordController@changePassword')->name('account.change_password');
+
+	//charge
+	Route::get('/charge/{id}', 'Payment\ChargeController@index')->name('payment.index');
+	Route::post('/charge/pay', 'Payment\ChargeController@charge')->name('payment.pay');
 });
 
 /*

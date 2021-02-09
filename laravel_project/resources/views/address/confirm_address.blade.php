@@ -28,9 +28,6 @@
 
 {{-- If address does exist --}}
 @else
-<a href="{{ route('address.create') }}">お届け先追加登録</a>
-<br>
-<br>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" class="table table-hover" border="1" style="table-layout: flex; width: 100%">
 
 {{-- table columns --}}
@@ -43,31 +40,23 @@
 <th class="mdl-data-table__cell--non-numeric">市区町村</th>
 <th class="mdl-data-table__cell--non-numeric">それ以下の住所</th>
 <th class="mdl-data-table__cell--non-numeric">電話番号</th>
-<th class="mdl-data-table__cell--non-numeric">編集する</th>
-<th class="mdl-data-table__cell--non-numeric">削除する</th>
 </tr>
 </thead>
-
 {{-- table rows --}}
 <tbody>
 @foreach ($address as $addr)
 <tr>
-<td class="mdl-data-table__cell--non-numeric"><input type="radio" name="select_address"></td>
+
+<td class="mdl-data-table__cell--non-numeric">
+<a href="{{ route('payment.index', $addr->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">確定</a>
+</td>
+
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->name }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->postal_code }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->prefecture }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->city }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->building }}</td>
 <td class="mdl-data-table__cell--non-numeric">{{ $addr->phone }}</td>
-<td class="mdl-data-table__cell--non-numeric">
-<a href="{{ route('address.edit', $addr->id) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">編集</a>
-</td>
-<td class="mdl-data-table__cell--non-numeric">
-<form action="{{ route('address.delete', $addr->id) }}" method="POST">
-{{ method_field('DELETE') }}
-{{ csrf_field() }}
-<input type="submit" value="削除" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-</form>
 </td>
 </tr>
 @endforeach
@@ -76,5 +65,5 @@
 </table>
 </div>
 </div>
-<a href="{{ route('cart.index') }}">カート内容へ戻る</a>｜<a href="{{ route('address.confirm_address') }}">購入手続きへ</a>
+<a href="{{ route('cart.index') }}">カート内容へ戻る</a>｜<a href="">購入手続きへ</a>
 @endsection
