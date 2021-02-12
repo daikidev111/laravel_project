@@ -8,7 +8,6 @@ use App\Http\Requests\AddRequest;
 final class CartController extends Controller
 {
 	private $cart;
-	const tax = 1.1;
 
 	public function __construct(CartRepository $cart)
 	{
@@ -19,7 +18,7 @@ final class CartController extends Controller
 	{
 		$carts = $this->cart->getCartForView();
 		$sub = $this->cart->subTotal($carts);
-		$total = $sub * self::tax;
+		$total = $sub * config('const.Tax');
 		return view('cart.index', compact('carts', 'sub', 'total'));
 	}
 
